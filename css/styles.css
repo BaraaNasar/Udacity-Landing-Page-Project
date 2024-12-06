@@ -1,0 +1,272 @@
+/* ---- Base Styles ---- */
+body {
+    background: linear-gradient(180deg, rgba(50, 150, 100, 1) 0%, rgba(30, 30, 70, 1) 100%);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;  /* Same font size for the title across all views */
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fdfdfd;
+    margin-top: 80px;  /* Space between the navbar and the title */
+    background-color: rgba(30, 30, 70, 0.8); /* Background with a neat color behind the title */
+    padding: 1em;
+    border-radius: 10px;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    border-bottom: 2px solid #ffa500;
+    margin: 1rem 0;
+    color: #f0f0f0;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #d0d0d0;
+    margin-bottom: 1rem;
+}
+
+/* ---- Layout Rules ---- */
+main {
+    margin: 8vh 1em;
+}
+
+section {
+    position: relative;
+    padding: 2em 1em;
+    min-height: 70vh;
+    border-radius: 8px;
+    margin-bottom: 2em;
+    background: rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+section:hover {
+    transform: scale(1.02);
+}
+
+/* ---- Navigation Bar Styles ---- */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Navbar with a solid background color */
+    padding: 0.5em 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.nav-button {
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    background-color: #333;
+    transition: background 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #ffa500;
+}
+
+/* ---- Footer Styles ---- */
+.site-footer {
+    background: #222;
+    padding: 2em;
+    color: #f5f5f5;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ---- Section Styles ---- */
+section {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 2em 0;
+    padding: 2em;
+    text-align: center;
+}
+
+/* ---- Media Queries for Responsiveness ---- */
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;  /* Reduce title size for mobile */
+        margin-top: 60px;  /* Adjust space between navbar and title for mobile */
+    }
+    
+    .navbar {
+        flex-direction: column; /* Stack the buttons vertically */
+        padding: 1em;
+        justify-content: center;
+    }
+
+    .nav-button {
+        width: 100%; /* Make buttons take full width on mobile */
+        margin: 0.5em 0;
+        padding: 1em;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    section {
+        padding: 1em; /* Reduce padding for mobile */
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+    h1 {
+        font-size: 2.5rem;  /* Adjust title size for tablets */
+        margin-top: 80px;  /* Adjust space for tablets */
+    }
+    
+    .navbar {
+        flex-direction: row;
+        padding: 1.5em;
+        justify-content: space-between;  /* Ensure even spacing */
+    }
+
+    .nav-button {
+        font-size: 1.2rem; /* Increase button size for tablets */
+        padding: 1em;
+    }
+
+    section {
+        padding: 2em;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .navbar {
+        justify-content: space-between; /* Space buttons evenly on larger screens */
+    }
+
+    .nav-button {
+        padding: 1em 2em;
+        font-size: 1.5rem; /* Adjust button size for larger screens */
+    }
+
+    section {
+        padding: 3em;
+        margin: 3em 0;
+    }
+}
+
+/* Active state for sections in viewport */
+section.active {
+    border: 2px solid #ffa500; /* Add a border or other highlight style */
+    background: rgba(0, 0, 0, 0.3); /* Change background to highlight active section */
+}
+
+/* Active state for navigation links */
+.nav-button.active {
+    background-color: #ffa500;
+    color: #fff;
+}
+
+/* Navbar list styles */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+}
+
+#navbar__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-item a:hover {
+    background-color: #444;
+}
+
+
+/* --- Basic navbar styles --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    text-align: center;
+}
+
+.navbar .menu {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- Mobile styles --- */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar .menu {
+        display: none; /* Hide menu by default */
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar a {
+        width: 100%;
+        text-align: left;
+    }
+
+    /* Toggle menu when button clicked */
+    .navbar.active .menu {
+        display: flex;
+    }
+
+    .navbar .toggle-btn {
+        display: block;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+    }
+}
+
+/* --- Tablet and desktop styles --- */
+@media screen and (min-width: 768px) {
+    .navbar .toggle-btn {
+        display: none; /* Hide toggle button on larger screens */
+    }
+}
+

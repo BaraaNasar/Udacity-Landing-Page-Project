@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Custom Landing Page</title>
+  <!-- Load Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Load Styles -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <h1 class="site-title">Custom Page</h1>
+      <!-- Dynamic Navigation Bar -->
+      <nav class="navbar">
+        <ul id="navbar__list"></ul> <!-- Empty ul that will be populated dynamically -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section id="intro" data-nav="Introduction" class="active-section">
+      <div class="content-container">
+        <h2>Introduction</h2>
+        <p>Welcome to this unique landing page. Explore the sections below to learn more!</p>
+      </div>
+    </section>
+    <section id="features" data-nav="Features">
+      <div class="content-container">
+        <h2>Features</h2>
+        <p>Discover amazing features designed to enhance your experience.</p>
+      </div>
+    </section>
+    <section id="gallery" data-nav="Gallery">
+      <div class="content-container">
+        <h2>Gallery</h2>
+        <p>Take a look at some of the stunning visuals that we have curated for you.</p>
+      </div>
+    </section>
+    <section id="contact" data-nav="Contact">
+      <div class="content-container">
+        <h2>Contact</h2>
+        <p>We'd love to hear from you! Reach out to us anytime.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2024 Your Custom Site</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script defer src="js/app.js"></script>
+
+  <!-- JavaScript for dynamic navigation and smooth scroll -->
+  <script>
+    // Define the sections for the navigation
+    const navItems = [
+      { id: "intro", text: "Introduction" },
+      { id: "features", text: "Features" },
+      { id: "gallery", text: "Gallery" },
+      { id: "contact", text: "Contact" }
+    ];
+
+    // Get the container for the navigation list
+    const navBarList = document.querySelector('#navbar__list');
+
+    // Create navigation items dynamically
+    navItems.forEach(item => {
+      const li = document.createElement('li');
+      const button = document.createElement('button');
+      button.classList.add('nav-button');
+      button.textContent = item.text;
+      button.dataset.scrollTo = item.id;
+      li.appendChild(button);
+      navBarList.appendChild(li);
+    });
+
+    // Define Global Variables
+    const buttons = document.querySelectorAll('.nav-button');
+    const sections = document.querySelectorAll('section');
+
+    /**
+     * Scroll to Section on Button Click
+     */
+    buttons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetSection = document.getElementById(button.dataset.scrollTo);
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
+
+    /**
+     * Add 'active' class to section when near top of viewport
+     */
+    const offset = (section) => {
+      return Math.floor(section.getBoundingClientRect().top);
+    };
+
+    // Remove the active class from all sections
+    const removeActive = (section) => {
+      section.classList.remove('your-active-class');
+    };
+
+    // Add the active class to the section
+    const addActive = (conditional, section) => {
+      if (conditional) {
+        section.classList.add('your-active-class');
+      }
+    };
+
+    /**
+     * Implementing the section activation logic
+     * Add 'active' class when section is in the viewport
+     */
+    const sectionActivation = () => {
+      sections.forEach(section => {
+        const elementOffset = offset(section);
+        // Check if the section is in the viewport
+        const inViewport = elementOffset < window.innerHeight && elementOffset >= -section.offsetHeight;
+
+        // Remove the active class from all sections
+        removeActive(section);
+
+        // Add the active class only if the section is in the viewport
+        addActive(inViewport, section);
+      });
+    };
+
+    // Event listener for scroll to check section visibility
+    window.addEventListener('scroll', sectionActivation);
+
+    // Also run once on page load to ensure the correct section is highlighted
+    window.addEventListener('load', sectionActivation);
+
+    /**
+     * Handle Clicked Link and Keep Active State
+     */
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        // Remove the active state from all nav buttons
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Add the active state to the clicked nav button
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
